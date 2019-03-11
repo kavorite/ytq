@@ -1,5 +1,5 @@
 # ytq
-Command-line application for compressing posts of YouTube links in a given Discord channel (the name stands for YouTube Queue).
+Command-line application for compressing posts of YouTube links in a given Discord channel (YouTube Queue).
 
 Compiling:
 1. [Install Go](https://golang.org/dl/) and add the `go` tool to your PATH.
