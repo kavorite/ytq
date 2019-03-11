@@ -76,12 +76,12 @@ func main() {
         if m.Author.ID != u.ID {
             continue
         }
-        deleteq = append([]string{m.ID}, deleteq...)
         lex := tokenize.TextToWords(m.Content)
         for _, t := range lex {
             id := ytid(t)
             if id != nil {
                 idq = append([]string{*id}, idq...)
+                deleteq = append([]string{m.ID}, deleteq...)
             }
         }
     }
