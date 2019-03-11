@@ -6,7 +6,6 @@ import (
     "os"
     "fmt"
     "github.com/jdkato/prose/tokenize"
-    "net/smtp"
     str "strings"
     dgo "github.com/bwmarrin/discordgo"
 )
@@ -113,5 +112,4 @@ func main() {
             os.Exit(1)
         }
     }
-    <-sig
 }
