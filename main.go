@@ -6,12 +6,14 @@ import (
     "os"
     "fmt"
     "github.com/jdkato/prose/tokenize"
+    "net/smtp"
     str "strings"
     dgo "github.com/bwmarrin/discordgo"
 )
 
 var (
     chid, token string
+    email, pass string
     limit int
     dryRun, silent bool
 )
@@ -54,17 +56,25 @@ func fck(err error, msg string) {
 func main() {
     flag.StringVar(&chid, "chid", "", "Channel ID")
     flag.StringVar(&token, "t", "", "Authentication token")
+    flag.StringVar(&email, "e", "", "Authentication email (requires password)")
+    flag.StringVar(&pass, "p", "", "Authentication password")
     flag.IntVar(&limit, "n", 15, "Number of messages to retrieve")
     flag.BoolVar(&dryRun, "y", false, "Enable dry-run")
     flag.BoolVar(&silent, "s", false, "Run silently")
     flag.Parse()
-    if token == "" {
-        log.Fatalln("Please provide a login token (-t).")
+    if token == "" && (email == "" || pass == "") {
+        log.Fatalln("Please provide a login token (-t) or both email and password (-e, -p).")
     }
     if chid == "" {
         log.Fatalln("Please provide a target channel ID (-chid).")
     }
-    s, err := dgo.New(token)
+    var credentials []interface{}
+    if token != "" {
+        credentials = []interface{}{token}
+    } else {
+        credentials = []interface{}{email, pass}
+    }
+    s, err := dgo.New(credentials...)
     fck(err, "")
     u, err := s.User("@me")
     fck(err, "Retrieve user ID")
@@ -103,4 +113,5 @@ func main() {
             os.Exit(1)
         }
     }
+    <-sig
 }
