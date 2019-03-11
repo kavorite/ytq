@@ -8,5 +8,5 @@ Compiling:
 4. Install dependencies:
   - `go get github.com/bwmarrin/discordgo`
   - `go get github.com/jdkato/prose/tokenize`
-5. `go build`
+5. `cd` to the root of your local clone and `go build`
 6. `ytq -chid <chan> -t <authentication token>`
