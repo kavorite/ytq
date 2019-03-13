@@ -11,18 +11,4 @@ Compiling:
 5. `cd` to the root of your local clone and `go build`
 6. `ytq -chid <chan> -t <authentication token>`
 
-<div style="text-align: center; width: 50%; float: left">
-<strong>Before:</strong>
-<div>
-<img src="https://i.imgur.com/GKAlQ6S.png"></img>
-</div>
-
-<strong>After:</strong>
-<div>
-<img src="https://i.imgur.com/KR8Z7VW.png"></img>
-</div>
-<span style="font-size: 70%; color: lightgray">Screen real-estate reclaimed!</span>
-</div>
-
-
 I assume no responsibility for consequences of failure to comply with the Discord ToS. This software has no warranty, it is provided “as is.” It is your responsibility to validate the behavior of the routines and their accuracy using the source code provided, or to purchase support and warranties from commercial redistributors. 
