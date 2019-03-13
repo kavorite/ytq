@@ -5,6 +5,7 @@ import (
     "log"
     "os"
     "fmt"
+    "net/http"
     "github.com/jdkato/prose/tokenize"
     str "strings"
     dgo "github.com/bwmarrin/discordgo"
@@ -22,10 +23,18 @@ var ytpfxs [2]string = [2]string {
     "youtube.com/watch?v=",
 }
 
+func ckid(id string) (valid bool, err error) {
+    rsp, err := http.Head(fmt.Sprintf("https://youtube.com/oembed?url=youtu.be/%s", id))
+    if err != nil {
+        return
+    }
+    valid = rsp.StatusCode == 200
+}
+
 func ytid(s string) *string {
     i := -1
     for _, pfx := range ytpfxs {
-        i = str.LastIndex(s, pfx)
+        i = str.Index(s, pfx)
         if i > 0 {
             i += len(pfx)
             break
